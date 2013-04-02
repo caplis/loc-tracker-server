@@ -19,14 +19,14 @@ app.post('/location/data', function(req, res) {
         fs.writeFile('/tmp/trackr-' + (reqId++) + '-' + d + '.json', JSON.stringify(req.body), function(err) {
             if (err) {
                 console.log(err.name + ': ' + err.message);
-                res.json(400, {status: 'fail', message: err.message});
+                return res.json(400, {status: 'fail', message: err.message});
             }
             console.log('saved.');
-            res.json(200, {status:'ok', 'message': 'saved.'});
+            return res.json(200, {status:'ok', 'message': 'saved.'});
         });
     }
     else {
-        res.json(400, {status: 'fail', message: 'Bad input.'});
+        return res.json(400, {status: 'fail', message: 'Bad input.'});
     }
 });
 
